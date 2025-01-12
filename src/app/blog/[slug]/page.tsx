@@ -3,11 +3,14 @@ import { client } from "@/sanity/lib/client";
 import { urlFor } from "@/sanity/lib/image";
 import { PortableText } from "next-sanity";
 import Image from "next/image";
-export default async function page({
-  params: { slug },
-}: {
-  params: { slug: string };
-}) {
+interface PageProps {
+  params: {
+    slug: string;
+  };
+}
+
+
+export default async function page({ params: { slug } }: PageProps) {
   const query = `*[_type =='blog' && slug.current == "${slug}"]
   {
   name ,paragraph , image ,block}[0]`;
