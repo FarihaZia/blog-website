@@ -3,20 +3,38 @@ import { client } from "@/sanity/lib/client";
 import { urlFor } from "@/sanity/lib/image";
 import { PortableText } from "next-sanity";
 import Image from "next/image";
+
 interface PageProps {
-  params: {
+  params:Promise<{
     slug: string;
-  };
+  }>;
 }
 
+// Main component
+export default async function Page({ params }: PageProps) {
+  const { slug } =await params;
 
-export default async function page({ params: { slug } }: PageProps) {
-  const query = `*[_type =='blog' && slug.current == "${slug}"]
-  {
-  name ,paragraph , image ,block}[0]`;
+  const query = `*[_type == 'blog' && slug.current == "${slug}"] {
+    name,
+    paragraph,
+    image,
+    block
+  }[0]`;
+
 
   const data = await client.fetch(query);
-  console.log(data);
+  
+
+  if (!data) {
+    return (
+      <article className="mt-12 mb-24 px-4 lg:px-4 flex flex-col gap-y-12">
+        <h1 className="text-3xl lg:text-6xl font-extrabold text-center text-dark dark:text-light">
+          Blog not found
+        </h1>
+      </article>
+    );
+  }
+
   return (
     <article className="mt-12 mb-24 px-4 lg:px-4 flex flex-col gap-y-12">
       {/* Blog Title */}
@@ -68,7 +86,7 @@ export default async function page({ params: { slug } }: PageProps) {
       {/* Main Body of Blog */}
       <section className="text-lg leading-normal text-dark/80 dark:text-light/80 space-y-6">
         <PortableText value={data.block} />
-        <Commentbox />
+       <div className="text-blue-500"> <Commentbox /></div> 
       </section>
     </article>
   );
