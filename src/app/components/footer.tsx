@@ -2,7 +2,6 @@ import Link from "next/link";
 import React from "react";
 import {
   FaFacebookF,
-  FaInstagram,
   FaLinkedin,
   FaTwitter,
 } from "react-icons/fa";
@@ -12,9 +11,9 @@ const Footer = () => {
     <footer className="bg-gray-900 text-gray-300 py-8">
       <div className="container mx-auto px-5 flex flex-col lg:flex-row justify-between items-center">
         <div className="mb-6 lg:mb-0">
-          <h2 className="text-xl font-bold text-white">Fariha's Blog</h2>
+          <h2 className="text-xl font-bold text-white">Farihas Blog</h2>
           <p className="text-sm text-gray-400">
-            Sharing insights, stories, and knowledge.
+            Sharing insights stories and knowledge.
           </p>
         </div>
 
@@ -68,7 +67,7 @@ const Footer = () => {
         </div>
       </div>{" "}
       <div className="border-t border-gray-700 mt-8 pt-6 text-center text-sm text-gray-400">
-        © {new Date().getFullYear()} Fariha's Blog. All rights reserved.
+        © {new Date().getFullYear()} Farihas Blog. All rights reserved.
       </div>
     </footer>
   );

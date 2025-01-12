@@ -9,7 +9,7 @@ const Commentbox = () => {
     const CommentSave = localStorage.getItem('comments')
     if(CommentSave){
         setComments(JSON.parse(CommentSave))}
-   })
+   } , [])
 
 
     const addComments = () => {
